@@ -12,7 +12,6 @@ class Player
         Console.WriteLine("체력 : " + currHp + " / " + maxHp);
         Console.WriteLine("----------------------------------------");
     }
-    
     public int Status()
     {
         Potion potion = new Potion();
@@ -50,7 +49,6 @@ class Potion
     }
 }
 
-// 에러나 혹은 잘못된 선택에 관한것도 만든다.
 enum STARTSELECT
 {
     SELECTTOWN ,
