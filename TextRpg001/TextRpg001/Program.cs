@@ -14,10 +14,9 @@ class Player
     }
     public int Status()
     {
-        Potion potion = new Potion();
-
         if(currHp <= maxHp)
         {
+            Potion potion = new Potion();
             currHp = potion.HpPotion(currHp, maxHp);
             if (currHp > maxHp)
             {
@@ -29,7 +28,7 @@ class Player
 }
 class Monster
 {
-
+    
 }
 
 class Potion
@@ -68,11 +67,7 @@ namespace TextRpg001
             Console.WriteLine("1. 마을");
             Console.WriteLine("2. 배틀");
             Console.WriteLine("어디로 가시겠습니까?");
-            // 리턴이란 구문은 리턴이 되는 순간
-            // 함수를 완전히 종료시킨다.
-            // 즉 리턴을 한번했다면 그 아래
-            // 아무리 많은 코드가 있어도.
-            // 사용이 없다.
+            
             //ConsoleKeyInfo keyInfo = Console.ReadKey();
 
             Console.WriteLine("");
