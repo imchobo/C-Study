@@ -1,17 +1,24 @@
 ﻿using System;
-class Player
-{
-    int att = 10;
-    int currHp = 50;
-    int maxHp = 100;
 
+class FightUnit
+{
+    protected string name = "None";
+    protected int att = 10;
+    protected int currHp = 50;
+    protected int maxHp = 100;
+
+    
     public void StatusRender()
     {
-        Console.WriteLine("----------------------------------------");
+        Console.WriteLine(name + " 능력치---------------------------\n");
         Console.WriteLine("공격력 : " + att);
         Console.WriteLine("체력 : " + currHp + " / " + maxHp);
-        Console.WriteLine("----------------------------------------");
+        Console.WriteLine("----------------------------------------\n");
     }
+}
+
+class Player : FightUnit
+{
     public void PrintHp()
     {
         int originCurrHp = currHp - new Potion().HpPotionStat();
@@ -49,11 +56,11 @@ class Player
         }
         return currHp;
     }
-}
-class Monster
+}// 코드 재활용성을 향상시키기 위한 문법이 상속이다. (같은 코드 두번 치기 싫다.)
+class Monster : FightUnit
 {
-    
-}
+
+}// 코드 재활용성을 향상시키기 위한 문법이 상속이다. (같은 코드 두번 치기 싫다.)
 class Potion
 {
     int hpPotion = 30;
@@ -135,7 +142,7 @@ namespace TextRpg001
             {
                 Console.Clear();
                 _player.StatusRender();
-                Console.WriteLine("마을에서 무슨 일을 하시겠습니까?");
+                Console.WriteLine("마을에서 무슨 일을 하시겠습니까?\n");
                 Console.WriteLine("1. 체력을 회복한다.");
                 Console.WriteLine("2. 무기를 강화한다.");
                 Console.WriteLine("3. 마을을 나간다.");
@@ -157,22 +164,28 @@ namespace TextRpg001
 
                         break;
                     case ConsoleKey.D3:
-                        Console.WriteLine("마을을 나가겠습니다.\n");
+                        Console.WriteLine(". 마을을 나가겠습니다.\n");
                         Console.Write("진행을 위해 아무 키 입력해주십시오.");
                         Console.ReadKey();
                         return;
                     case ConsoleKey.NumPad3:
-                        Console.WriteLine("마을을 나가겠습니다.\n");
+                        Console.WriteLine(". 마을을 나가겠습니다.\n");
                         Console.Write("진행을 위해 아무 키 입력해주십시오.");
                         Console.ReadKey();
                         return;
                 }
             }
         }
-        static void Battle()
+        static void Battle(Player _player)
         {
-            Console.WriteLine("아직 개장하지 않았습니다.");
-            Console.ReadKey();
+            Monster newMonster = new Monster();
+            while (true)
+            {
+                Console.Clear();
+                _player.StatusRender();
+                newMonster.StatusRender();
+                Console.ReadKey();
+            }
         }
         static void Main(string[] args)
         {
@@ -199,7 +212,7 @@ namespace TextRpg001
                         Town(newPlayer);
                         break;
                     case STARTSELECT.SELECTBATTLE:
-                        Battle();
+                        Battle(newPlayer);
                         break;
                     case STARTSELECT.NONESELECT:
                         break;

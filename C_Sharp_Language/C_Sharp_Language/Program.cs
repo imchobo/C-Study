@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace C_Sharp_Language
 {
-    
     class Using_System
     {
         //static void Main(string[] args)
@@ -176,7 +175,7 @@ namespace C_Sharp_Language
         public void Fight()
         {
             //함수 안에서 사용된 지역변수는 내부에서만 사용 가능. ( 그래서 이름 겹쳐져도 상관없음 )
-            int att;
+            //int att;
             Console.WriteLine("플레이어가 싸운다.");
         }
         public void SetHp(int _Hp)
@@ -238,7 +237,7 @@ namespace C_Sharp_Language
         //    // 클래스를 객체화하면 그건 참조형이다.
         //    Test(newData); // 변경 하지 않는 값. Struct 는 값 형이다.
         //}
-    }
+    } // 값 형 읽는 용도.
     
     // 다른 언어에선 정수형 상수라고 하는데 C# 에선 그냥 상수 이다.
     // 보통 어떤 상태를 표현하는 것 중
@@ -297,5 +296,64 @@ namespace C_Sharp_Language
         //            break;
         //    }
         //}
+    }// 열거형 값형.
+
+    class FightUnit
+    {
+        //          public      protected   private
+        // 범위     외부까지     자식까지     나만
+        protected int att = 10;
+        protected int hp = 100;
+        public void Damage(FightUnit _otherUnit)
+        {
+            // 나는 fightUnit 지만
+            // 이안에서 플레이어의 기능을 쓰고 싶은것.
+            // 다운 캐스팅
+            // 다운 캐스팅은 최대한 지양(피하라)한다.
+            // 플레이어를 실수로 몬스터로 변경할 수도 있게 된다.
+            // PLAYER otherPlayer = _otherUnit;
+
+            //this.hp -= _otherUnit.att;
+
+        }
+    }
+    // 내려준다 , 상속 시킨다.
+    // C#에서 클래스 상속이란 오직 하나만 가능.
+    // 클래스 상속을 여러개 받는 언어들도 존재하지만 (대표적 C++)
+    // C#은 아니다.
+    class PLAYER : FightUnit
+    {
+        int lv = 1;
+        public int Heal()
+        {
+            return hp + 100;
+        }
+    }
+    class MONSTER : FightUnit
+    {
+        
+    }
+
+    class _23Inheritance // 상속
+    {
+        // 상속이란
+        // 코드 재활용성을 향상시키기 위해서
+        // (똑같은 코드 2번 치기 싫다.)
+        // 어떤 계열이 있느냐를 파악하는 감.
+        // 공통되는 기능을 하는 멤버변수와 함수를 걷어내기 위함.
+        // 새로운 클래스에 그 모든 멤버변수와 함수를 넣는다.
+        // 상속시킨다.
+        static void Main(string[] args)
+        {
+            PLAYER newPlayer = new PLAYER();
+            MONSTER newMonster = new MONSTER();
+            
+            // 플레이어의 부분을 모두 다 포기하겠다.
+            // 업캐스팅
+            // 자식이 부모형이 되는 것.
+            // 그러므로써 자식의 능력은 버린다.
+            newPlayer.Damage(newMonster); // 상속 받은 메서드를 사용하여 newMonster 에게 공격 받는다.
+            newMonster.Damage(newPlayer);
+        }
     }
 }
