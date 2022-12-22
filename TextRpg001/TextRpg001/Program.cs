@@ -12,12 +12,36 @@ class Player
         Console.WriteLine("체력 : " + currHp + " / " + maxHp);
         Console.WriteLine("----------------------------------------");
     }
+    public void PrintHp()
+    {
+        int originCurrHp = currHp - new Potion().HpPotionStat();
+        // 그 객체의 멤벼변수와 관련된 코드를 2번 이상 사용하면 메서드로 만들어라.
+        if (currHp >= maxHp)
+        {
+            if (currHp == maxHp)
+            {
+                Console.WriteLine(". 체력을 더 이상 회복할수 없습니다.");
+                return;
+            }
+            Console.WriteLine(". 체력을 회복합니다.\n");
+            Console.WriteLine("현재 플레이어의 HP :  " + originCurrHp + " => " + maxHp + " 이 되었습니다.");
+        }
+        else if(currHp < maxHp)
+        {
+            Console.WriteLine(". 체력을 회복합니다.\n");
+            Console.WriteLine("현재 플레이어의 HP :  " + originCurrHp + " => " + currHp + " 이 되었습니다.");
+        }
+    }
     public int Status()
     {
         if(currHp <= maxHp)
         {
             Potion potion = new Potion();
             currHp = potion.HpPotion(currHp, maxHp);
+            PrintHp();
+            Console.WriteLine("");
+            Console.Write("진행을 위해 아무 키 입력해주십시오.");
+            Console.ReadKey();
             if (currHp > maxHp)
             {
                 return currHp = maxHp;
@@ -30,11 +54,14 @@ class Monster
 {
     
 }
-
 class Potion
 {
     int hpPotion = 30;
-
+    public int HpPotionStat()
+    {
+        int _hpPotion = hpPotion;
+        return _hpPotion;
+    }
     public int HpPotion(int _currHp , int _maxHp)
     {
         if (_maxHp <= _currHp)
@@ -47,11 +74,10 @@ class Potion
         }
     }
 }
-
 enum STARTSELECT
 {
     SELECTTOWN ,
-    SELECTBATTLE , 
+    SELECTBATTLE ,
     NONESELECT
 }
 namespace TextRpg001
@@ -66,37 +92,39 @@ namespace TextRpg001
             Console.Clear();
             Console.WriteLine("1. 마을");
             Console.WriteLine("2. 배틀");
-            Console.WriteLine("어디로 가시겠습니까?");
+            Console.Write("어디로 가시겠습니까? : ");
             
             //ConsoleKeyInfo keyInfo = Console.ReadKey();
-
-            Console.WriteLine("");
-
             switch (Console.ReadKey().Key)
             {
                 case ConsoleKey.D1:
-                    Console.WriteLine("");
+                    Console.WriteLine("\n");
                     Console.WriteLine("마을로 이동합니다.");
+                    Console.Write("진행을 위해 아무 키 입력해주십시오.");
                     Console.ReadKey();
                     return STARTSELECT.SELECTTOWN;
                 case ConsoleKey.NumPad1:
-                    Console.WriteLine("");
-                    Console.WriteLine("마을로 이동합니다.");
+                    Console.WriteLine("\n");
+                    Console.WriteLine("마을로 이동합니다.\n");
+                    Console.Write("진행을 위해 아무 키 입력해주십시오.");
                     Console.ReadKey();
                     return STARTSELECT.SELECTTOWN;
                 case ConsoleKey.D2:
-                    Console.WriteLine("");
-                    Console.WriteLine("싸움터로 이동합니다.");
+                    Console.WriteLine("\n");
+                    Console.WriteLine("싸움터로 이동합니다.\n");
+                    Console.Write("진행을 위해 아무 키 입력해주십시오.");
                     Console.ReadKey();
                     return STARTSELECT.SELECTBATTLE;
                 case ConsoleKey.NumPad2:
-                    Console.WriteLine("");
-                    Console.WriteLine("싸움터로 이동합니다.");
+                    Console.WriteLine("\n");
+                    Console.WriteLine("싸움터로 이동합니다.\n");
+                    Console.Write("진행을 위해 아무 키 입력해주십시오.");
                     Console.ReadKey();
                     return STARTSELECT.SELECTBATTLE;
                 default:
-                    Console.WriteLine("");
-                    Console.WriteLine("잘못된 선택입니다.");
+                    Console.WriteLine("\n");
+                    Console.WriteLine("잘못된 선택입니다.\n");
+                    Console.Write("진행을 위해 아무 키 입력해주십시오.");
                     Console.ReadKey();
                     return STARTSELECT.NONESELECT;
             }
@@ -111,7 +139,7 @@ namespace TextRpg001
                 Console.WriteLine("1. 체력을 회복한다.");
                 Console.WriteLine("2. 무기를 강화한다.");
                 Console.WriteLine("3. 마을을 나간다.");
-
+                Console.WriteLine("\n\n");
                 switch (Console.ReadKey().Key)
                 {
                     case ConsoleKey.D1: // 체력 회복
@@ -119,24 +147,24 @@ namespace TextRpg001
 
                         break;
                     case ConsoleKey.NumPad1: // 체력 회복
-
+                        _player.Status();
 
                         break;
                     case ConsoleKey.D2: // 무기강화
 
-
                         break;
                     case ConsoleKey.NumPad2: // 무기강화
 
-
                         break;
                     case ConsoleKey.D3:
-
-
+                        Console.WriteLine("마을을 나가겠습니다.\n");
+                        Console.Write("진행을 위해 아무 키 입력해주십시오.");
+                        Console.ReadKey();
                         return;
                     case ConsoleKey.NumPad3:
-
-
+                        Console.WriteLine("마을을 나가겠습니다.\n");
+                        Console.Write("진행을 위해 아무 키 입력해주십시오.");
+                        Console.ReadKey();
                         return;
                 }
             }
@@ -161,9 +189,7 @@ namespace TextRpg001
             //    ConsoleKeyInfo keyInfo = Console.ReadKey();
             //    Console.WriteLine(keyInfo.Key);
             //}
-
             Player newPlayer = new Player();
-
             while (true)
             {
                 STARTSELECT SelectCheck = StartSelect();
