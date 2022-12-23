@@ -178,7 +178,7 @@ namespace TextRpg001
         }
         static void Battle(Player _player)
         {
-            Monster newMonster = new Monster();
+            Monster newMonster = new Monster(); 
             while (true)
             {
                 Console.Clear();
