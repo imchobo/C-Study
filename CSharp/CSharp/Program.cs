@@ -15,7 +15,6 @@ namespace TextRPG
         protected int currHp = 50;
         protected int maxHp = 100;
         protected int att = 10;
-
         
         public void StatusRenderer()
         {
@@ -28,7 +27,7 @@ namespace TextRPG
     }
     class Player : FightUnit
     {
-        //private string name = "PLAYER";
+        protected int weaponUpgradeRandom;
         public string Name()
         {
             return name = "Player";
@@ -54,6 +53,16 @@ namespace TextRPG
             }
             return currHp;
         }
+        public int WeaponUpgrade()
+        {
+            weaponUpgradeRandom = new Item().WeaponUpgrade();
+
+            if (weaponUpgradeRandom < 0)
+            {
+                att += 1;
+            }
+            return att;
+        }
     }
     class Monster : FightUnit
     {
@@ -65,18 +74,17 @@ namespace TextRPG
     class Item
     {
         private int hpPotion = 30;
-        private int weaponUpgrade = 1;
-        private int randomValue = 0;
+        private int randomValue;
         public int HpPotion(int _hp)
         {
             return _hp + hpPotion;
         }
-        public int WeaponUpgrade(int _randomValue) // 오늘 랜덤 강화 시스템
+        public int WeaponUpgrade() // 오늘 랜덤 강화 시스템
         {
             Random _weapon = new Random();
-            randomValue = _weapon.Next(0 , 1);
+            int _randomValue = _weapon.Next(0, 1);
             
-            return randomValue;
+            return _randomValue;
         }
     }
 
@@ -133,10 +141,10 @@ namespace TextRPG
                         Console.ReadKey();
                         break;
                     case ConsoleKey.D2: // 무기강화
-
+                        _player.WeaponUpgrade();
                         break;
                     case ConsoleKey.NumPad2:
-
+                        _player.WeaponUpgrade();
                         break;
                     case ConsoleKey.D3:
                         Console.WriteLine(". 마을을 떠납니다.");

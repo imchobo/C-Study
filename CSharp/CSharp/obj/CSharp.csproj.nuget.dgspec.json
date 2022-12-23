@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Administrator\\Desktop\\GitHub\\CSharp\\CSharp\\CSharp.csproj": {}
+    "C:\\Users\\Administrator\\Desktop\\GitHub\\CSharp_Study\\CSharp\\CSharp\\CSharp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Administrator\\Desktop\\GitHub\\CSharp\\CSharp\\CSharp.csproj": {
+    "C:\\Users\\Administrator\\Desktop\\GitHub\\CSharp_Study\\CSharp\\CSharp\\CSharp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\GitHub\\CSharp\\CSharp\\CSharp.csproj",
+        "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\GitHub\\CSharp_Study\\CSharp\\CSharp\\CSharp.csproj",
         "projectName": "CSharp",
-        "projectPath": "C:\\Users\\Administrator\\Desktop\\GitHub\\CSharp\\CSharp\\CSharp.csproj",
+        "projectPath": "C:\\Users\\Administrator\\Desktop\\GitHub\\CSharp_Study\\CSharp\\CSharp\\CSharp.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Administrator\\Desktop\\GitHub\\CSharp\\CSharp\\obj\\",
+        "outputPath": "C:\\Users\\Administrator\\Desktop\\GitHub\\CSharp_Study\\CSharp\\CSharp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
